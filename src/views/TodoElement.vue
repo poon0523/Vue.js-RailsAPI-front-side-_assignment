@@ -37,7 +37,7 @@
 import axios from 'axios'
 const HTTP = axios.create({
   headers: {
-    'Authorization': `token ${process.env.VUE_APP_GITHUB_TOKEN}`,
+    // 'Authorization': `token ${process.env.VUE_APP_GITHUB_TOKEN}`,
     'Accept': 'application/vnd.github.v3+json',
     'Content-Type':'application/json',
   },
@@ -62,7 +62,7 @@ export default {
     },
     closeIssue(id){
       const target = this.issues.find((item) => item.id === id)
-      return HTTP.patch(`https://api.github.com/repos/YuukiIshibashi/vue_sample/issues/${target.number}`,
+      return HTTP.patch(`https://api.github.com/repos/diveintocode-corp/vue-todo/issues/${target.number}`,
         {
           state: "closed"
         },
@@ -81,8 +81,7 @@ export default {
       })
     },
     getIssue() {
-      console.log(process.env.VUE_APP_GITHUB_TOKEN)
-      return HTTP.get('https://api.github.com/repos/YuukiIshibashi/Vue_sample/issues',
+      return HTTP.get('https://api.github.com/repos/diveintocode-corp/vue-todo/issues',
           {
             status: 'open',
             // headers: {
