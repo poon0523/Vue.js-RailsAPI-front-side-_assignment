@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Todo from '../views/Todo.vue'
-import TodoElement from '../views/TodoElement.vue'
+import Todos from '../views/Todos.vue'
+import Issues from '../views/Issues.vue'
+import TodosIssues from '../views/TodosIssues.vue'
 
 Vue.use(VueRouter)
 
@@ -12,23 +13,28 @@ const routes = [
     name: 'Home',
     component: Home
   },
-  {
-    path: '/about',
-    name: 'About',
+  // {
+  //   path: '/about',
+  //   name: 'About',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    // component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  // },
+  {
+    path: '/todos',
+    name: 'Todos',
+    component: Todos
   },
   {
-    path: '/todo',
-    name: 'Todo',
-    component: Todo
+    path: '/issues',
+    name: 'Issues',
+    component: Issues
   },
   {
-    path: '/todo-element',
-    name: 'TodoElement',
-    component: TodoElement
+    path: '/todos-issues',
+    name: 'TodosIssues',
+    component: TodosIssues
   },
 ]
 
