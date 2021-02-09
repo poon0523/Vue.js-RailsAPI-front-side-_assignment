@@ -55,12 +55,14 @@ export default {
       })
     },
     getIssue() {
+      console.log(process.env.VUE_APP_GITHUB_URL)
       return HTTP.get(`${process.env.VUE_APP_GITHUB_URL}/issues`,
           {
             status: 'open',
           },
         )
         .then((res) => {
+          console.log(res)
           this.issues = res.data
       })
     }
