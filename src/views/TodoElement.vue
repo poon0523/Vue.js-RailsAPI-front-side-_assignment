@@ -62,17 +62,10 @@ export default {
     },
     closeIssue(id){
       const target = this.issues.find((item) => item.id === id)
-      // return HTTP.patch(`https://api.github.com/repos/diveintocode-corp/vue-todo/issues/${target.number}`,
-      //   {
-      //     state: "closed"
-      //   },
-      //   {
-      //     headers: {
-      //       'Authorization': `token ${process.env.VUE_APP_GITHUB_TOKEN}`,
-      //       'Accept': 'application/vnd.github.v3+json',
-      //       'Content-Type': 'application/json',
+      // return HTTP.patch(`${process.env.VUE_APP_GITHUB_URL}/issues/${target.number}`,
+      //     {
+      //       state: "closed"
       //     },
-      //   }
       //   )
       //   .then(() => {
       //     this.issues.some((v, i) => {
@@ -84,15 +77,10 @@ export default {
       })
     },
     getIssue() {
-      return HTTP.get('https://api.github.com/repos/diveintocode-corp/vue-todo/issues',
+      return HTTP.get(`${process.env.VUE_APP_GITHUB_URL}/issues`,
           {
             status: 'open',
-            // headers: {
-            //   'Authorization': `token ${process.env.VUE_APP_GITHUB_TOKEN}`,
-            //   'Accept': 'application/vnd.github.v3+json',
-            //   'Content-Type': 'application/json',
-            // },
-          }
+          },
         )
         .then((res) => {
           this.issues = res.data
