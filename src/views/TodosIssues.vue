@@ -2,16 +2,18 @@
   <div>
     <h1>todoリスト</h1>
     <el-row style="margin: 10px 0">
-      <el-col :span="21">
-        <el-input placeholder="todo" v-model="todo" @submit="onSubmit"></el-input>
-      </el-col>
-      <el-col :span="3">
-        <el-button type="primary" @click="onSubmit">作成</el-button>
-      </el-col>
+      <form @submit.prevent="addTodo">
+        <el-col :span="21">
+          <el-input placeholder="todo" v-model="todo" @submit="onSubmit"></el-input>
+        </el-col>
+        <el-col :span="3">
+          <el-button type="primary" @click.prevent="addTodo">作成</el-button>
+        </el-col>
+      </form> 
     </el-row>
-    <el-button type="success" @click="getIssue()">issue取得</el-button>
+    <el-button type="success" @click="getIssue">issue取得</el-button>
     <el-row :gutter="12">
-      <TodoItem @handleClick="deleteList" :todos="todos" />
+      <TodoItem @handleClick="removeTodo" :todos="todos" />
       <!-- <el-col :span="12"  v-for="(todo, index) in todos" :key="todo">
         <el-card class="box-card" shadow="hover" style="margin: 5px 0">
           <div class="clearfix">
@@ -57,12 +59,17 @@ export default {
       issues: []
     }
   },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.getIssue();
+    })
+  },
   methods: {
-    onSubmit(){
+    addTodo(){
       this.todos.push(this.todo);
       this.todo= "";
     },
-    deleteList(index){
+    removeTodo(index){
       this.todos.splice(index, 1);
     },
     closeIssue(index){
