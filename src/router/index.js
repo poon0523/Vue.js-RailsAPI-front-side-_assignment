@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Todos from '../views/Todos.vue'
-import Issues from '../views/Issues.vue'
+import TodoList from '../views/TodoList.vue'
+import IssueList from '../views/IssueList.vue'
 import TodosIssues from '../views/TodosIssues.vue'
 
 Vue.use(VueRouter)
@@ -22,14 +22,14 @@ const routes = [
     // component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   // },
   {
-    path: '/todos',
-    name: 'Todos',
-    component: Todos
+    path: '/todo-list',
+    name: 'TodoList',
+    component: TodoList
   },
   {
-    path: '/issues',
-    name: 'Issues',
-    component: Issues
+    path: '/issue-list',
+    name: 'IssueList',
+    component: IssueList
   },
   {
     path: '/todos-issues',

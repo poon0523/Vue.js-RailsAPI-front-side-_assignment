@@ -11,35 +11,19 @@
         </el-col>
       </form> 
     </el-row>
-    <el-button type="success" @click="getIssue">issue取得</el-button>
     <el-row :gutter="12">
       <TodoItem @handleClick="removeTodo" :todos="todos" />
-      <!-- <el-col :span="12"  v-for="(todo, index) in todos" :key="todo">
-        <el-card class="box-card" shadow="hover" style="margin: 5px 0">
-          <div class="clearfix">
-            <el-button style="float: right; margin-top: -5px" @click="deleteList(index)" type="success" icon="el-icon-check" circle></el-button>
-          </div>
-          <div>{{todo}}</div>
-        </el-card>
-      </el-col> -->
       <TodoItem @handleClick="closeIssue" :todos="issues" />
-      <!-- <el-col :span="12"  v-for="(issue, index) in issues" :key="index">
-        <el-card class="box-card" shadow="hover" style="margin: 5px 0">
-          <div class="clearfix">
-            <el-button style="float: right; margin-top: -5px" @click="closeIssue(index)" type="success" icon="el-icon-check" circle></el-button>
-          </div>
-          <div>{{issue.title}}</div>
-        </el-card>
-      </el-col> -->
     </el-row>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import TodoItem from '@/components/TodoItem.vue'
+import axios from 'axios';
+import TodoItem from '@/components/TodoItem.vue';
 
 const HTTP = axios.create({
+  baseURL: `${process.env.VUE_APP_GITHUB_ENDPOINT}`,
   headers: {
     // 'Authorization': `token ${process.env.VUE_APP_GITHUB_TOKEN}`,
     'Accept': 'application/vnd.github.v3+json',
@@ -75,7 +59,7 @@ export default {
     closeIssue(index){
       const target = this.issues[index];
       // const target = this.issues.find((item) => item.id === id)
-      // return HTTP.patch(`${process.env.VUE_APP_GITHUB_URL}/issues/${target.number}`,
+      // return HTTP.patch(`/issues/${target.number}`,
       //     {
       //       state: "closed"
       //     },
@@ -90,13 +74,9 @@ export default {
       })
     },
     getIssue() {
-      return HTTP.get(`${process.env.VUE_APP_GITHUB_URL}/issues`,
-          {
-            status: 'open',
-          },
-        )
+      HTTP.get('/issues')
         .then((res) => {
-          this.issues = res.data
+          this.issues = res.data;
       })
     }
   }

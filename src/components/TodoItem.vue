@@ -1,10 +1,13 @@
 <template>
   <div>
-    <el-col :span="12"  v-for="(todo, index) in todos" :key="index">
+    <el-col :span="12"  v-for="( todo, index ) in todos" :key="index">
       <el-card class="box-card" shadow="hover" style="margin: 5px 0">
-        <!-- <i class="el-icon-circle-check" style="float: right;"></i> -->
-        <el-button style="float: right; margin: 5px" @click="done(index)" type="success" icon="el-icon-check" circle></el-button>
-        <div style="text-align: left">{{todo.title ? todo.title : todo}}</div>
+        <el-row :gutter="12">
+          <el-col :span="21">{{ displayTodo(todo) }}</el-col>
+            <el-col :span="3">
+              <el-button @click="done(index)" type="success" icon="el-icon-check" circle></el-button>
+            </el-col>
+          </el-row>
       </el-card>
     </el-col>
   </div>
@@ -19,6 +22,9 @@ export default {
   methods: {
     done(index) {
       this.$emit('handleClick', index);
+    },
+    displayTodo(todo) {
+      return todo.title ? todo.title : todo;
     }
   }
 }

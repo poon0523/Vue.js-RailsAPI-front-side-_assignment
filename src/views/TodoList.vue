@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'Todos',
+  name: 'TodoList',
   data () {
     return {
       todo: "",
