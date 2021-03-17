@@ -1,14 +1,9 @@
 <template>
   <div>
-    <h1>todoリスト</h1>
+    <h1>todoリスト４</h1>
     <el-row style="margin: 10px 0">
       <form @submit.prevent="addTodo">
-        <el-col :span="21">
-          <el-input placeholder="todo" v-model="todo" @submit="onSubmit"></el-input>
-        </el-col>
-        <el-col :span="3">
-          <el-button type="primary" @click.prevent="addTodo">作成</el-button>
-        </el-col>
+        <el-input placeholder="todo" v-model="todo"></el-input>
       </form> 
     </el-row>
     <el-row :gutter="12">
@@ -43,10 +38,8 @@ export default {
       issues: []
     }
   },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      vm.getIssue();
-    })
+  mounted() {
+    this.getIssue();
   },
   methods: {
     addTodo(){
@@ -57,7 +50,6 @@ export default {
       this.todos.splice(index, 1);
     },
     closeIssue(index){
-      const target = this.issues[index];
       // const target = this.issues.find((item) => item.id === id)
       // return HTTP.patch(`/issues/${target.number}`,
       //     {
@@ -69,9 +61,7 @@ export default {
       //       if(v.number==target.number) this.issues.splice(i, 1);
       //     })
       // })
-      this.issues.some((v, i) => {
-        if(v.number==target.number) this.issues.splice(i, 1);
-      })
+      this.issues.splice(index, 1);
     },
     getIssue() {
       HTTP.get('/issues')

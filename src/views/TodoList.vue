@@ -10,7 +10,7 @@
           <el-row :gutter="12">
             <el-col :span="21">{{ todo }}</el-col>
             <el-col :span="3">
-              <el-button @click="removeTodo(todo)" type="success" icon="el-icon-check" circle></el-button>
+              <el-button @click="removeTodo(index)" type="success" icon="el-icon-check" circle></el-button>
             </el-col>
           </el-row>
         </el-card>
@@ -33,9 +33,8 @@ export default {
       this.todos.push(this.todo);
       this.todo = "";
     },
-    removeTodo(todo){
-      const target = this.todos.indexOf(todo);
-      this.todos.splice(target, 1);
+    removeTodo(index){
+      this.todos.splice(index, 1);
     }
   }
 }
