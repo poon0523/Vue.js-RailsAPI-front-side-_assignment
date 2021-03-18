@@ -1,14 +1,18 @@
 <template>
   <div>
-    <h1>todoリスト４</h1>
-    <el-row style="margin: 10px 0">
-      <form @submit.prevent="addTodo">
-        <el-input placeholder="todo" v-model="todo"></el-input>
-      </form> 
-    </el-row>
+    <h1>todoリスト</h1>
+    <form @submit.prevent="addTodo">
+      <el-input placeholder="todo" v-model="todo"></el-input>
+    </form> 
     <el-row :gutter="12">
-      <TodoItem @handleClick="removeTodo" :todos="todos" />
-      <TodoItem @handleClick="closeIssue" :todos="issues" />
+      <TodoItem v-for="( todo, index ) in todos" :key="index" 
+          @handleClick="removeTodo" 
+          :todo="todo" 
+          :index="index" />
+      <TodoItem v-for="( issue, index ) in issues" :key="issue.id" 
+          @handleClick="closeIssue"
+          :todo="issue.title"
+          :index="index" />
     </el-row>
   </div>
 </template>
