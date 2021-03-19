@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>issueリスト</h1>
-    <el-button type="success" @click="getIssue">issue取得</el-button>
+    <h1>Issueリスト</h1>
+    <el-button type="success" @click="getIssues()">issue取得</el-button>
     <el-row :gutter="12">
       <el-col :span="12"  v-for="( issue, index ) in issues" :key="issue.id">
         <el-card class="box-card" shadow="hover" style="margin: 5px 0">
@@ -45,9 +45,9 @@ export default {
       //   .then(() => {
       //     this.todos.splice(index, 1);
       // })
-      this.todos.splice(index, 1);
+      this.issues.splice(index, 1);
     },
-    getIssue() {
+    getIssues() {
       HTTP.get('/issues')
         .then((res) => {
           this.issues = res.data;

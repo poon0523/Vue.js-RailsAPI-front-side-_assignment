@@ -1,16 +1,16 @@
 <template>
   <div>
-    <h1>todoリスト</h1>
-    <form @submit.prevent="addTodo">
+    <h1>Todoリスト</h1>
+    <form @submit.prevent="addTodo()">
       <el-input placeholder="todo" v-model="todo"></el-input>
     </form> 
     <el-row :gutter="12">
       <TodoItem v-for="( todo, index ) in todos" :key="index" 
-          @handleClick="removeTodo" 
+          @handleClick="removeTodo()" 
           :todo="todo" 
           :index="index" />
       <TodoItem v-for="( issue, index ) in issues" :key="issue.id" 
-          @handleClick="closeIssue"
+          @handleClick="closeIssue()"
           :todo="issue.title"
           :index="index" />
     </el-row>
@@ -37,18 +37,18 @@ export default {
   },
   data () {
     return {
-      todo: "",
+      todo: '',
       todos: [],
       issues: []
     }
   },
-  mounted() {
-    this.getIssue();
+  created() {
+    this.getIssues();
   },
   methods: {
     addTodo(){
       this.todos.push(this.todo);
-      this.todo= "";
+      this.todo= '';
     },
     removeTodo(index){
       this.todos.splice(index, 1);
@@ -67,7 +67,7 @@ export default {
       // })
       this.issues.splice(index, 1);
     },
-    getIssue() {
+    getIssues() {
       HTTP.get('/issues')
         .then((res) => {
           this.issues = res.data;
