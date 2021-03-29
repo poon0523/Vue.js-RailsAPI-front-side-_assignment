@@ -21,7 +21,7 @@
 import axios from 'axios';
 import TodoItem from '@/components/TodoItem.vue';
 
-const HTTP = axios.create({
+const client = axios.create({
   baseURL: `${process.env.VUE_APP_GITHUB_ENDPOINT}`,
   headers: {
     // 'Authorization': `token ${process.env.VUE_APP_GITHUB_TOKEN}`,
@@ -54,21 +54,10 @@ export default {
       this.todos.splice(index, 1);
     },
     closeIssue(index){
-      // const target = this.issues.find((item) => item.id === id)
-      // return HTTP.patch(`/issues/${target.number}`,
-      //     {
-      //       state: "closed"
-      //     },
-      //   )
-      //   .then(() => {
-      //     this.issues.some((v, i) => {
-      //       if(v.number==target.number) this.issues.splice(i, 1);
-      //     })
-      // })
       this.issues.splice(index, 1);
     },
     getIssues() {
-      HTTP.get('/issues')
+      client.get('/issues')
         .then((res) => {
           this.issues = res.data;
       })

@@ -18,7 +18,7 @@
 <script>
 import axios from 'axios'
 
-const HTTP = axios.create({
+const client = axios.create({
   baseURL: `${process.env.VUE_APP_GITHUB_ENDPOINT}`,
   headers: {
     // 'Authorization': `token ${process.env.VUE_APP_GITHUB_TOKEN}`,
@@ -36,19 +36,10 @@ export default {
   },
   methods: {
     closeIssue(index){
-      // const target = this.issues[index]
-      // return HTTP.patch(`/issues/${target.number}`,
-      //     {
-      //       state: "closed"
-      //     },
-      //   )
-      //   .then(() => {
-      //     this.todos.splice(index, 1);
-      // })
       this.issues.splice(index, 1);
     },
     getIssues() {
-      HTTP.get('/issues')
+      client.get('/issues')
         .then((res) => {
           this.issues = res.data;
       })
