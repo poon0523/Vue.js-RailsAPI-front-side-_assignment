@@ -2,9 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/todo-list">TodoList</router-link> |
-      <router-link to="/issue-list">IssueList</router-link> |
-      <router-link to="/todos-issues">Todos-Issues</router-link>
+      <router-link to="/todos">Todos</router-link> |
+      <router-link to="/issues">Issues</router-link> |
+      <router-link to="/todos-issues">Todos-Issues</router-link> |
+      <router-link to="/tasks">Tasks</router-link>
     </div>
     <router-view/>
   </div>
